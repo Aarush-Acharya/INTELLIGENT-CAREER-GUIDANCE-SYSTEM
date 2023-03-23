@@ -1,6 +1,9 @@
 import pandas as pd
 import numpy as np
 import pickle
+from sklearn.model_selection import train_test_split 
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn import metrics
 career = pd.read_csv('dataset9000.data', header = None)
 #np.dtype('float64')
 
@@ -20,7 +23,7 @@ career.dropna(how ='all', inplace = True)
 #print("career.dropna(how ='all', inplace = True)",career.dropna(how ='all', inplace = True))
 career.head()
 ## splitting the data into training and test sets 
-from sklearn.model_selection import train_test_split 
+
 X_train, X_test, y_train, y_test = train_test_split(X, y,test_size = 0.3, random_state = 524)
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn import metrics
@@ -29,6 +32,7 @@ knn = KNeighborsClassifier(n_neighbors=5)
 
 knn.fit(X_train, y_train)
 print('X_train',X_train)
+print('X_test',X_test)
 print('y_train',y_train)
 y_pred = knn.predict(X_test)
 print('y_pred',y_pred)
